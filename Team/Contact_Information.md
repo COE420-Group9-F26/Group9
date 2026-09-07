@@ -6,4 +6,7 @@
 
 +971588778600 omaralkhatib171@gmail.com
 
++971506226196 b00094955@aus.edu
+
+
 Others did not push changes to the repo by monday. I will proceed to exercise 4 without their changes
