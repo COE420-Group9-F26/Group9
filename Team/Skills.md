@@ -7,5 +7,3 @@ Omar: Experienced in java, python, c++, kotlin both front-end and backend.
 Omar Alkhatib: Experienced in c++ and python.
 
 Qusai Al Tah: C++, Python, Java, Kotlin, Git, Cybersecurity, AI/ML, Data Analysis
-
-Others did not push changes to the repo by monday. I will proceed to exercise 4 without their changes
