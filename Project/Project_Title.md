@@ -1,1 +1,1 @@
-# Pharmacy Prescription Management System
+# La Roche Pharmacy Online Prescription and Medicine Management System
