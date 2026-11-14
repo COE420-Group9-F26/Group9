@@ -1,0 +1,43 @@
+@startuml
+|Pharmacy staff|
+start
+:Open order management;
+|Pharmacy system|
+:List confirmed orders;
+|Pharmacy staff|
+:Select order;
+repeat
+  |Pharmacy system|
+  :Retrieve current status
+and fulfillment method;
+  |Pharmacy staff|
+  :Choose new preparation status;
+  |Pharmacy system|
+  :Check staff authorization, transition
+and fulfillment method;
+  if (Update allowed?) then ([authorized and valid])
+    :Save new status on order;
+    if (Saved status?) then ([Ready for Pickup])
+      |Notification service|
+      :Send collection notice;
+      |Customer|
+      :Receive ready-for-pickup notice;
+    elseif () then ([Dispatched])
+      |Notification service|
+      :Send dispatch notice;
+      |Customer|
+      :Receive dispatch notice;
+    else ([Preparing])
+      |Pharmacy system|
+      :Return saved status without a customer notice;
+    endif
+    |Pharmacy system|
+    :Display updated status to staff;
+  else ([unauthorized or invalid])
+    :Display rejection reason and retain old status;
+  endif
+  |Pharmacy staff|
+  :Decide whether to update again;
+repeat while (Another update?) is ([yes]) not ([no])
+stop
+@enduml

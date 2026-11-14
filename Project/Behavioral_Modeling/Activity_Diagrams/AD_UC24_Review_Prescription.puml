@@ -1,0 +1,39 @@
+@startuml
+|Pharmacist|
+start
+:Select a submitted prescription;
+|Pharmacy system|
+:Retrieve the prescription linked
+to its customer and order;
+|Pharmacist|
+:Review the uploaded prescription;
+|Pharmacy system|
+:Validate prescription and read current status;
+if (Review outcome?) then ([valid])
+  |Pharmacist|
+  :Approve prescription;
+  |Pharmacy system|
+  :Save Approved status;
+  :Recheck order eligibility;
+elseif () then ([invalid])
+  |Pharmacist|
+  :Reject and record reason;
+  |Pharmacy system|
+  :Save Rejected status;
+else ([unclear or incomplete])
+  |Pharmacist|
+  :Enter clarification question;
+  |Pharmacy system|
+  :Save Clarification Requested status;
+endif
+|Notification service|
+:Notify customer of the saved status;
+note right
+  Approved: send approval status.
+  Rejected: include rejection reason.
+  Clarification: include the question.
+end note
+|Pharmacy system|
+:Return review result to pharmacist;
+stop
+@enduml

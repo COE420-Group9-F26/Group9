@@ -1,0 +1,39 @@
+@startuml
+|Customer|
+start
+:Submit payment details at checkout;
+|Pharmacy system|
+:Retrieve order and check
+required prescription approvals;
+if (Eligible for payment?) then ([eligible])
+else ([ineligible])
+  :Display payment blocked;
+  stop
+endif
+|Inventory|
+:Check requested quantities;
+if (All items available?) then ([yes])
+else ([no])
+  |Pharmacy system|
+  :Display insufficient stock;
+  stop
+endif
+repeat
+  |Pharmacy system|
+  :Request payment authorization;
+  |Payment gateway|
+  :Authorize payment and return result;
+  |Pharmacy system|
+  if (Authorization result?) then ([success])
+    :Confirm order;
+    :Display payment and order confirmation;
+    stop
+  else ([failure])
+    :Display failure and offer retry;
+  endif
+  |Customer|
+  :Choose whether to retry;
+backward :Resubmit payment details;
+repeat while (Retry payment?) is ([retry]) not ([stop])
+stop
+@enduml
